@@ -1,0 +1,32 @@
+version: "3.9" # Definieren der Schema-Version
+services: # Dienste und Container, die Erstellt und Ausgeführt werden sollen
+  db:
+    image: mysql:5.7 # Image Name und Version
+    volumes:
+      - db_data:/var/lib/mysql # Gibt das Volume an
+    restart: always
+    environment: # Umgebungsvariablen
+      MYSQL_ROOT_PASSWORD: somewordpress # Root Password
+      MYSQL_DATABASE: wordpressdb # Database
+      MYSQL_USER: wordpressusr # User
+      MYSQL_PASSWORD: wordpresspw # Password
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest # Image Name und Version
+    volumes:
+      - wordpress_data:/var/www/html # Gibt das Volume an
+    ports:
+      - "8000:80" # Gibt die Ports für Wordpress an
+    restart: always
+    environment: # Umgebungsvariablen
+      WORDPRESS_DB_HOST: db 
+      WORDPRESS_DB_USER: wordpressusr
+      WORDPRESS_DB_PASSWORD: wordpresspw
+      WORDPRESS_DB_NAME: wordpressdb
+volumes:
+  db_data: {}
+  wordpress_data: {}
+
+
+
