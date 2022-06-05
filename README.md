@@ -6,3 +6,7 @@ Participants:
 - hausejo1
 - schkev01
 
+Goals
+- Dockerfile «manuell» bauen und starten 
+- Vorgang mit Jenkins automatisieren 
+- Mehrere Jobs in Jenkins verknüpfen können 
